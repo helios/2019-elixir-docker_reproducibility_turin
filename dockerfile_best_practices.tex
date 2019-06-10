@@ -1,0 +1,102 @@
+
+\begin{frame}[fragile]
+\frametitle{Dockerfile}
+\framesubtitle{from \lstinline!stdin!}
+
+Building an image on the fly, w/o using a static file
+
+\begin{lstlisting}
+touch myfile.sh
+chmod +x myfile.sh
+docker build -t foo . -f-<<EOF
+FROM ubuntu:18.04
+RUN echo "hello world"
+COPY myfile.sh /opt/
+EOF
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Dockerfile}
+\framesubtitle{with a remote context}
+
+\begin{lstlisting}
+docker build -t foo \
+       https://github.com/thajeztah/pgadmin4-docker.git \
+	   -f-<<EOF
+	   FROM ubuntu:18.04
+	   WORKDIR /usr/local/lib/python2.7/site-packages
+	   COPY LICENSE pgadmin4/
+	   COPY config_distro.py pgadmin4/
+	   EOF
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dockerfile}
+\framesubtitle{ignore files}
+
+Unwanted files can be excluded from the context, by convention
+a \lstinline!.dockerignore! file is required and using regular expression
+is possible to exclude files.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dockerfile}
+\framesubtitle{ignore files}
+
+\begin{itemize}
+\item \lstinline!#!: defines a comment
+\item \lstinline!*/temp*! Exclude files and directories whose names start with temp in any immediate subdirectory of the root.For example, the plain file \lstinline!/somedir/temporary.txt! is excluded, as is the directory \lstinline!/somedir/temp!.
+\item \lstinline!|*/*/temp*! Exclude files and directories starting with temp from any sub-directory that is two levels below the root. For example, \lstinline!/somedir/subdir/temporary.txt! is excluded.
+\item \lstinline!temp?! Exclude files and directories in the root directory whose names are a one-character extension of temp. For example, \lstinline!/tempa! and \lstinline!/tempb! are excluded.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dockerfile}
+\framesubtitle{make it human readable}
+
+When possible sorting multi-line arguments is recommended
+
+\begin{lstlisting}
+RUN apt-get update &&\
+    apt-get install -y \
+	    bzr \
+		csv \
+		git \
+		mercurial \
+		subversion \
+		texlive
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Dockerfile}
+\framesubtitle{quick tips}
+
+\begin{itemize}
+\item Annotate the image with \lstinline!LABEL!
+\item Use \lstinline!ENV! for keeping track of versions
+\item \lstinline!COPY! is more transparent than \lstinline!ADD!
+\item Use \lstinline!wget! or \lstinline!curl! for downloading from the web
+\item The web does not guarantee URLs forever
+  \begin{itemize}
+  \item Consider to host a web/fileserver for \textit{very important} data or software
+  \item Licensing can be an issue, some software can not be distributed freely
+  \end{itemize}
+\item Use \lstinline!WORKDIR! when possible
+\item Image as executable ? \lstinline!ENTRYPOINT! is the way to go
+  \begin{itemize}
+  \item \lstinline!CMD! is used for default parameters \lstinline!--help!
+  \end{itemize}
+\item A regular user with \lstinline!root! privileges is worst than evil
+  \begin{itemize}
+  \item This applies only if it is your infrastructure \lstinline!:)!
+  \item In most scientific infrastructures Docker is forbidden or masked by some wrapper
+  \end{itemize}
+\end{itemize}
+\end{frame}
+ 
