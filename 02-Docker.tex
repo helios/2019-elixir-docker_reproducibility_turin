@@ -16,6 +16,7 @@
 \usepackage{algpseudocode}
 \usepackage{url}
 \usepackage{placeins}
+\usepackage{listings}
 
 \colorlet{grey}{gray!40}
 \definecolor{PG}{rgb}{0.0, 0.27, 0.13}
@@ -321,212 +322,9 @@ In [1] a comparison among physical server, KVM, and Docker is reported.
   		\end{center} 
 
 }
-   \frame{
-  \frametitle {Create a docker image for FastQC tool}
-\vspace{0.4cm}
-   \centerline{\color{NavyBlue} \textbf{\emph{FastQC in nutshell}}}\vspace{0.4cm}
-   \begin{itemize}
-   \item It is  quality control tool for high throughput sequence data;\vspace{0.2cm}
-   \item It is written in Java;\vspace{0.2cm}
-   \item It is main functions are:\vspace{0.1cm}
-   \begin{itemize}
-   \item Import of data from BAM, SAM or FastQ files (any variant);\vspace{0.1cm}
-   \item Providing a quick overview to tell you in which areas there may be problems;\vspace{0.1cm}
-   \item Summary graphs and tables to quickly assess your data;\vspace{0.1cm}
-   \item Export of results to an HTML based permanent report;\vspace{0.1cm}
-   \item Offline operation to allow automated generation of reports without running the interactive application.
-   \end{itemize} 
-   \end{itemize}     	
-   \begin{center}
-  			\includegraphics[width=0.15\columnwidth]{./Figure/QC}
-  		\end{center} 
-  }
-  
- \frame{
-  \frametitle {Create a docker image for FastQC tool}
-   \centerline{\color{NavyBlue} \textbf{\emph{How to create FastQC image}}}\vspace{0.4cm}
-  \begin{itemize}
-  \item Download and update a basic image (use Fedora);\vspace{0.2cm}
-  \item Download and install \textbf{\color{NavyBlue}Oracle Java} on the download image;\vspace{0.2cm}
-  \item Download and install  \textbf{\color{NavyBlue}unzip} on the download image;\vspace{0.2cm}
-  \item Download and install  \textbf{\color{NavyBlue}perl} on the download image;\vspace{0.2cm}
-  \item Download and install  \textbf{\color{NavyBlue}FastQC} on the download image;\vspace{0.2cm}
-  \item Run the embedded FastQC on fastq data.
-\end{itemize}     
-  }
 
-\frame{
-  \frametitle {Download and update a basic image}
-  \begin{itemize}
-  	\item Download Fedora; 
-  	          	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/pullFedora}
-  		\end{center}	
-  		
-  	 \end{itemize}	
-  		}
-  		
-  		
- \frame{
-  \frametitle {Download and update a basic image}
-  \begin{itemize} 		
-  	\item Create a new tag from Fedora image.
-          	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/tagFastQC}
-  			\end{center}	
- \end{itemize}
-} 
-  	 
- \frame{
-  \frametitle {Download and update a basic image}
-  \begin{itemize} 		
-  	\item Update Fedora using \emph{\color{PineGreen} dnf update};
-          	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/updateFedora}
-  			\end{center}	
-   \item  Commit the updated image.
-   		    \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/commitFedora}
-  			\end{center}	
- \end{itemize}
-} 
-  	\frame{
-  \frametitle {Download and install Oracle Java}
-  \begin{itemize} 		
-  	\item Download \textbf{\color{NavyBlue}Java RE ORACLE} (\url{http://www.oracle.com});\vspace{0.2cm}
-  	\item Install  \textbf{\color{NavyBlue}Java RE ORACLE}
-          	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/javaFedora}\vspace{0.2cm}
-  			\end{center}	
-   \item  Create a symbolic link in \emph{bin} for java program.
-   		    \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/javaFedora2}
-  			\end{center}	
- \end{itemize}
-}   	 
-  
-	\frame{
-  \frametitle {Download and install FastQC}
-  \begin{itemize} 		
-  	\item Install \textbf{\color{NavyBlue} unzip} command using   \emph{\color{PineGreen} dnf install unzip.x86\_64};
-          	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/unzipFedora}\vspace{0.2cm}
-  			\end{center}		
-  	\item Install  \textbf{\color{NavyBlue}perl} command using   \emph{\color{PineGreen} dnf install perl.x86\_64};
-          	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/perlFedora}\vspace{0.2cm}
-  			\end{center}	
-   \end{itemize}
-} 			
-  
-  			
-   
-\frame{
-  \frametitle {Download and install FastQC}
-  \begin{itemize}  			
-   \item Unzip  FastQC program;
-   		    \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/fastqcFedora}
-  			\end{center}	\vspace{0.1cm}
-	\item Make FastQC program executable  and create a symbolic link in \emph{bin} for it;
-	  	  		    \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/fastqcFedora1}
-  			\end{center}		\vspace{0.1cm}				
- \end{itemize}
-}   	
+\include{exercise-fastqc}
 
-\frame{
-  \frametitle {Download and install FastQC}
-  \begin{itemize}  			
- 	\item Commit the updated image.
- 	 	   \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/fastqcFedora2}
-  			\end{center}				
- \end{itemize}
-}   	      
-  	
- \frame{
-  \frametitle { Download and install FastQC}
-  \begin{itemize}  			
-   \item  We use \textbf{\color{NavyBlue}gedit} to create our  bash script; \vspace{0.2cm}
-   		    \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/fastqcGedit}
-  			\end{center}	
-  \end{itemize}
-}   	    	  
-
- \frame{
-  \frametitle { Download and install FastQC}
-  \begin{itemize}   	  			
-	\item Update the image adding the created script. \end{itemize}
-	\vspace{0.2cm}
-	  	  		    \begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/fastqcshFedora}
-  			\end{center}				
-
-}  
-
- 	    	  
- \frame{
-  \frametitle {Run the embedded FastQC}
-  \begin{itemize}   	  			
-	\item Execute the embedded FastQC on .fastq files.\vspace{0.2cm}
-	\item The folder containing .fastq files must be mount as /data/scratch  \end{itemize}
-	
-	  	    \begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/fastqrunFedora}
-  			\end{center}	
-  						
-
-}
-
- 	    	  
- \frame{
-  \frametitle {Run the embedded FastQC}
-  \begin{itemize}   	  			
-	\item FastQC output:
-	  	    \begin{center}
-  			\includegraphics[width=0.78\columnwidth]{./Figure/fastqcHTML}
-  			\end{center}	
-  						
- \end{itemize}
-}
-
-
-   \frame{
-  \frametitle {}
-  \vspace{1.5cm}
-  \centerline{\Huge \color{NavyBlue} \textbf{\emph{Create a docker image for }}}\vspace{0.05cm}
-  \centerline{\Huge \color{NavyBlue} \textbf{\emph{FastQC tool using dockerfile}}}
-  \vspace{0.4cm}
-     	\begin{center}
-  			\includegraphics[width=0.60\columnwidth]{./Figure/FastQC}
-  		\end{center} 
-
-}
-
-
-          \frame{
-  \frametitle {Create a dockerfile}
-  We use \textbf{\color{NavyBlue}gedit} to create our dockerfile; \vspace{0.2cm}
- \begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/gedit2}
- \end{center} 
-  }
-
- \frame{
-  \frametitle {Create FastQC image with dockerfile}
-  
- \emph{\color{PineGreen} docker build -t  ``beccuti/fastqc2'' . -f DockerfileFedora} can be used to build an image from a Dockerfile.
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/build2}
-  		\end{center}  
-  		     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/build3}
-  		\end{center}  
-  
- } 	
-  	
    \frame{
   \frametitle {}
   \vspace{1.5cm}
@@ -537,126 +335,9 @@ In [1] a comparison among physical server, KVM, and Docker is reported.
   		\end{center} 
 
 }  
-   \frame{
-  \frametitle {A web server using docker}
-	This requires the following tasks:\vspace{0.4cm}
-	\begin{itemize}
-	\item Download \textbf{\color{NavyBlue} nginx} docker image;\vspace{0.2cm}
-	\item Execute this image using  the option \emph{\color{PineGreen}-p 80:80} to inform Docker that we want to expose the port 80. 
-	\end{itemize}	  
-  
-    }
-    
-\frame{
-\frametitle{A web server using docker}
-    	\begin{center}
-  			\includegraphics[width=0.50\columnwidth]{./Figure/nginx}
-  		\end{center} 
 
-\begin{itemize}
-\item It is a HTTP server software with focus on core web server and proxy features;\vspace{0.2cm}
-\item It was developed to provide   high concurrency, high performance and low memory usage;\vspace{0.2cm}
-\item It is able to scale incredibly far with limited resources.
-\end{itemize}
-}  
-   \frame{
-  \frametitle {Download nginx docker image}
-  \begin{itemize}
-  	\item Download nginx image;   	 
-  	\end{itemize}
-  	          	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/pullnginx}
-  		\end{center}	
-  		
-	
-  		} 
-   
- 	     \frame{
-\frametitle{Execute nginx docker image} 
-  
- \emph{\color{PineGreen} docker run -p 80:80 nginx} must be used to star our web server on port 80.
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/runnginx}
-  		\end{center}  
-  	\begin{center}
-  			\includegraphics[width=0.95\columnwidth]{./Figure/webnginx}
-  		\end{center} 
- }  	
- 
-   \frame{
-\frametitle{Execute nginx docker image}
+\include{exercise-webserver-nginx}
 
-\textbf{\color{NavyBlue}How to use nginx to visualize fastqc output:}
-\vspace{0.4cm}
-\begin{itemize}
-\item Update nginx image with \textbf{\color{NavyBlue}vi} command;\vspace{0.2cm}
-\item Modify   \textbf{\color{NavyBlue}/etc/nginx/conf.d/default.conf}  adding     \emph{\color{PineGreen}autoindex on;} in  \textbf{\color{NavyBlue}location /} block;\vspace{0.2cm}
-\item Execute nginx mounting the folder containing fastqc output in \textbf{\color{NavyBlue}/local/shared/nginx/html}.
-\end{itemize}  
-
-    	\begin{center}
-  			\includegraphics[width=0.50\columnwidth]{./Figure/nginx} \hspace{0.5cm} 
-  			\includegraphics[width=0.15\columnwidth]{./Figure/QC}
-  		\end{center} 
-  		    
-  	   }  
-  
-  
-   \frame{
-\frametitle{Execute nginx docker image} 	   
- \textbf{\color{NavyBlue}How to use nginx to visualize fastqc output:}
-\vspace{0.4cm}
-\begin{itemize}
-\item Update nginx image with \textbf{\color{NavyBlue}vi} command;\vspace{0.2cm}
- \end{itemize} 	   
-  	     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/vimnginx}
-  		\end{center}  
-  		}
-  
-    \frame{
-\frametitle{Execute nginx docker image} 	   
- \textbf{\color{NavyBlue}How to use nginx to visualize fastqc output:}
-\vspace{0.4cm}
-\begin{itemize}
-\item Modify   \textbf{\color{NavyBlue}/etc/nginx/conf.d/default.conf}  adding     \emph{\color{PineGreen}autoindex on;} in  \textbf{\color{NavyBlue}location /} block;\vspace{0.2cm}
- \end{itemize} 	   
-  	     	\begin{center}
-  			\includegraphics[width=0.90\columnwidth]{./Figure/confnginx}
-  		\end{center}  
-  		} 
-  		
-      \frame{
-\frametitle{Execute nginx docker image} 	   
- \textbf{\color{NavyBlue}How to use nginx to visualize fastqc output:}
-\vspace{0.4cm}
-\begin{itemize}
-\item Commit the updates in the images;
- \end{itemize} 	   
-  	     	\begin{center}
-  			\includegraphics[width=0.90\columnwidth]{./Figure/commitnginx}
-  		\end{center}  
-  		} 
-  		
-  			
-   		
-      \frame{
-\frametitle{Execute nginx docker image} 	   
- \textbf{\color{NavyBlue}How to use nginx to visualize fastqc output:}
-\vspace{0.4cm}
-\begin{itemize}
-\item Run the new image \vspace{0.2cm}
-\end{itemize}
-  	     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/run1ginx}
-  		\end{center}
-\begin{itemize} 		
-\item Option \emph{\color{PineGreen}-v /home/beccuti/TMP/Pat/:/usr/share/nginx/html} is used to set the fastqc output folder as the root directory of web server;\vspace{0.2cm}
-\item  Web server is executed in background  using \emph{\color{PineGreen} /usr/sbin/nginx -g "daemon off;"}.
- \end{itemize} 	   
-  
-  		} 
-  		
   			
      \frame{
   \frametitle {}
@@ -670,233 +351,9 @@ In [1] a comparison among physical server, KVM, and Docker is reported.
   		\end{center} 
 
 }		 		
-  	
-     \frame{
-  \frametitle {Deploy services on a cluster }
-  We will use  \emph{\color{NavyBlue} docker-machine} to create two virtual nodes. \vspace{0.4cm}
-  \begin{itemize}
-  \item It is a tool that lets you install Docker Engine on virtual hosts; \vspace{0.2cm}
-  \item It requires an Hypervisor (e.g. Oracle VirtualBox) installed on the machine;\vspace{0.2cm}
-  \end{itemize}
-  	\begin{center}
-  \includegraphics[width=0.30\columnwidth]{./Figure/dockermachine}
-  		\end{center} 
-
-}	  	
-
-
-     \frame{
-\frametitle{Deploy services on a cluster } 
-  \vspace{0.1cm}
- \emph{\color{PineGreen} docker-machine create -\;-driver virtualbox myvm1} creates and starts a VirtualBox VM with Docker running.
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/createvm}
-  		\end{center}  
- }  	  
-  	
-
-     \frame{
-\frametitle{Deploy services on a cluster } 
   
- \emph{\color{PineGreen} docker-machine ls} returns the list of the created VirtualBox VMs.  \vspace{0.1cm}
-     	\begin{center}
-  			\includegraphics[width=0.90\columnwidth]{./Figure/lsvm}
-  		\end{center}   
- \emph{\color{PineGreen} docker-machine stop myvm1} stops \textbf{\color{NavyBlue}myvm1} VM.  \vspace{-0.1cm}
-     	\begin{center}
-  			\includegraphics[width=0.90\columnwidth]{./Figure/stopvm}
-  		\end{center} 
-}
+\include{exercise-swarm}
 
-     \frame{
-\frametitle{Deploy services on a cluster } 
-    		 \emph{\color{PineGreen} docker-machine start myvm1} starts \textbf{\color{NavyBlue}myvm1} VM.  \vspace{0.3cm}
-     	\begin{center}
-  			\includegraphics[width=0.90\columnwidth]{./Figure/runvm}
-  		\end{center}  
- }  	    	
-  
-  
-   \frame{
-\frametitle{Deploy services on a cluster } 
-  
- \emph{\color{PineGreen} docker-machine rm myvm1} removes \textbf{\color{NavyBlue}myvm1} VM.  \vspace{0.1cm}
-     	\begin{center}
-  			\includegraphics[width=0.90\columnwidth]{./Figure/rmvm}
-  		\end{center}
-
- } 
- 
-    \frame{
-\frametitle{Deploy services on a cluster } 
-  
-   		 \emph{\color{PineGreen} docker-machine ssh myvm1} can be used to access  \textbf{\color{NavyBlue}myvm1} VM.  \vspace{0.2cm}
-     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/sshvm}
-  		\end{center}    
-}
- 
-   
-   \frame{
-\frametitle{Deploy services on a cluster } 
-   	    	  
-   \emph{\color{PineGreen} docker-machine ssh myvm1 "docker ps -a"} can be used to execute commands on \textbf{\color{NavyBlue}myvm1} VM.  \vspace{0.2cm}
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/execvm}
-  		\end{center} 
-  		}
-
-   \frame{
-\frametitle{Deploy services on a cluster }  
-\emph{\color{PineGreen} docker-machine ssh  myvm1 "docker swarm init --advertise-addr 192.168.99.102"}  is used to initialize the swarm and set \textbf{\color{NavyBlue}myvm1} as manager.
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/initswarm}
-  		\end{center} 
-\emph{\color{PineGreen} docker-machine ssh  myvm2 "docker swarm join --token SWMTKN-1-430vpzpm8ves6whcy8ox34vlyrrmutinoewrzcaaqix32h917f-7bml90kfo5j1toxmql19hfsmh 192.168.99.102:2377"}  is used to add \textbf{\color{NavyBlue}myvm2} into the  swarm.
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/addswarm}
-  		\end{center} 
-
-}
- 
- 
-    \frame{
-\frametitle{}
- \centerline{\Huge \color{NavyBlue} \textbf{\emph{ Deploy services}} }\vspace{0.1cm} \centerline{\Huge \color{NavyBlue} \textbf{\emph{into a Docker swarm}}}
-     	\begin{center}
-  			
-  			\includegraphics[width=0.40\columnwidth]{./Figure/dockerswarm}
-  		\end{center} 
-} 
-  
-   \frame{
-\frametitle{Deploy services on a cluster } 
-   	    	  
-   \emph{\color{PineGreen} docker-machine ssh myvm1 "docker node ls"} provides information about the swarm nodes.  \vspace{-0.1cm}
-     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/nodelsswarm}
-  		\end{center} 		
-   \emph{\color{PineGreen}docker-machine ssh  myvm1 "docker node update -\;-availability drain  myvm2"} makes a node inactive.  \vspace{-0.1cm}
-     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/nodeinacswarm}
-  		\end{center} 
-  		}   		
-  	
-   \frame{
-\frametitle{Deploy services on a cluster } 
-   	    	
-   \emph{\color{PineGreen}docker-machine ssh  myvm1 "docker node update -\;-availability active  myvm2"} makes a node inactive.  \vspace{0.2cm}
-     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/nodeactswarm}
-  		\end{center} 
-  		}   	  	
-  		
-  	  		
-  		
-  	   \frame{
-\frametitle{Deploy services on a cluster } 
-   	    	  
-   \emph{\color{PineGreen} docker-machine ssh myvm1 "docker service create   -\;-name my-web   -\;-publish published=80,target=80 -\;-replicas=1     nginx"} starts one service on a node.  \vspace{-0.1cm}
-     	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/serviceswarm}
-  		\end{center} 	
-  				
-  \emph{\color{PineGreen}docker-machine ssh  myvm1 "docker  service ls"} and \emph{\color{PineGreen}docker-machine ssh  myvm1 "docker service  ps my-web"}
-    return information on services.
-    
-       	\begin{center}
-  			\includegraphics[width=1.00\columnwidth]{./Figure/serviceinfoswarm}
-  		\end{center}  
-  		}	
-    		
-  	   \frame{
-\frametitle{Deploy services on a cluster } 
-   	    	  
-   \emph{\color{PineGreen}  docker-machine ssh  myvm1 "docker service scale my-web=2" 	} can be used to scale a service.  \vspace{-0.1cm}
-     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/scaleswarm}
-  		\end{center} 	
-
-       	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceinfoswarm2}
-  		\end{center}  
-  		}		
-  		
-  	 	   \frame{
-\frametitle{Deploy services on a cluster } 
-   	    	  
-   \emph{\color{PineGreen} docker-machine ssh  myvm1 "docker service create -\;-name my-web   -\;-publish published=80,target=80   - -mode global  nginx"
- 	} can be use to automatically allocate a service on all the nodes  \vspace{-0.1cm}
-     	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceglobalswarm}
-  		\end{center} 	
-
-       	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceglobalswarm2}
-  		\end{center}  
-  		}		
-	
-    		
-  	 	   \frame{
-\frametitle{Deploy services on a cluster } 
-\textbf{\color{NavyBlue}How to execute a one-shot service using swam}\vspace{0.4cm}
-\begin{itemize}
-\item Our goal is to use fastqc image\footnote{It must be uploaded in Docker hub} in parallel on the two nodes; \vspace{0.2cm}
-\item Data can be shared using Virtualbox shared folder (i.e. \textbf{\color{NavyBlue}/hosthome}); \vspace{0.2cm}
-\item We create two folders with containing fastq files. (i.e. \textbf{\color{NavyBlue}d1/} and \textbf{\color{NavyBlue}d2/});\vspace{0.2cm}
-\item Option  \emph{\color{PineGreen} -\;-restart-condition=``none" } can be used for running  one-shot service;\vspace{0.2cm}
-\item Option  \emph{\color{PineGreen} --mount type=bind,src=$\langle SOURCE \rangle$ ,dst= $\langle DESTINATION \rangle$} can be used for mounting the input data folder;
-\end{itemize}
-
-}		
-
-  	 	   \frame{
-\frametitle{Deploy services on a cluster } 
-\textbf{\color{NavyBlue}How to execute a one-shot service using swam}\\\vspace{0.4cm}
-\emph{\color{PineGreen}docker-machine  ssh   myvm1\\
-\hspace{0.5cm}"docker service create -\;-replicas 1 -\;-name S1 -\;-user 1000  \\
-\hspace{0.5cm}-\;-restart-condition="none"   \\
-\hspace{0.5cm}-\;-mount type=bind,\\
-\hspace{0.5cm}src=/hosthome/beccuti/Articoli/Presentation/DockerCorso/data/d2,\\
-\hspace{0.5cm}dst=/data/scratch \\
-\hspace{0.5cm}docker.io/beccuti/fastqc2   /bin/fastqc.sh"}
-
-       	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceoneswarm}
-  		\end{center} 
-
-} 
-
-
- 	 	   \frame{
-\frametitle{Deploy services on a cluster } 
-\textbf{\color{NavyBlue}How to execute a one-shot service using swam}\\\vspace{0.4cm}
-\emph{\color{PineGreen}docker-machine  ssh   myvm1\\
-\hspace{0.5cm}"docker service create -\;-replicas 1 -\;-name S2 -\;-user 1000  \\
-\hspace{0.5cm}-\;-restart-condition="none"   \\
-\hspace{0.5cm}-\;-mount type=bind,\\
-\hspace{0.5cm}src=/hosthome/beccuti/Articoli/Presentation/DockerCorso/data/d1,\\
-\hspace{0.5cm}dst=/data/scratch \\
-\hspace{0.5cm}docker.io/beccuti/fastqc2   /bin/fastqc.sh"}
-
-       	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceoneswarm1}
-  		\end{center} 
-
-} 
-
-
-  	 	   \frame{
-\frametitle{Deploy services on a cluster } 
-\textbf{\color{NavyBlue}How to execute a one-shot service using swam}\vspace{0.4cm}
-       	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceoneps}
-  		\end{center} 
-  		       	\begin{center}
-  			\includegraphics[width=1.0\columnwidth]{./Figure/serviceoneps1}
-  		\end{center} 
-}
- 		
   		\frame{
 \frametitle{Conclusion}
 In this training day:\vspace{0.1cm}
@@ -921,6 +378,42 @@ In this training day:\vspace{0.1cm}
 \vspace{2.0cm}
 \centerline{\includegraphics[scale=0.55]{./Figure/thanks.jpg}}
 }
+
+
+\frame{
+\frametitle {}
+\vspace{2cm}
+\centerline{\Huge \color{NavyBlue} \textbf{\emph{Storage}}}
+\vspace{0.5cm}
+}
+\include{storage}
+
+
+
+\frame{
+\frametitle {}
+\vspace{2cm}
+\centerline{\Huge \color{NavyBlue} \textbf{\emph{Swarm}}}
+\vspace{0.5cm}
+}
+\include{swarm}
+
+\frame{
+\frametitle {}
+\vspace{2cm}
+\centerline{\Huge \color{NavyBlue} \textbf{\emph{Swarm}}}
+\vspace{0.5cm}
+}
+\include{exercise-swarm}
+
+
+\frame{
+\frametitle {}
+\vspace{2cm}
+\centerline{\Huge \color{NavyBlue} \textbf{\emph{Private Registry}}}
+\vspace{0.5cm}
+}
+\include{registry}
 					   
 \end{document}
 
