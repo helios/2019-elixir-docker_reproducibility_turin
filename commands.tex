@@ -1,0 +1,229 @@
+
+\begin{frame}[fragile]
+\frametitle{Simple commands}
+
+To start a new container
+
+\begin{lstlisting}
+docker run -d -t ubuntu:18.04
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Simple commands}
+
+finds the container ID
+
+\begin{lstlisting}
+docker ps
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Simple commands}
+
+runs a command in the container
+\begin{lstlisting}
+docker exec suspicious_davinci "ls" "-lpF"
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{Detach}
+\begin{lstlisting}
+docker run -d -t ubuntu:18.04
+\end{lstlisting}
+
+\begin{itemize}
+\item \lstinline!run! command
+\item \lstinline!-d! option detached
+\item \lstinline!-t! create a terminal
+\item \lstinline!ubuntu! image
+\item \lstinline!18.04! image version (label)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{Interactive}
+\begin{lstlisting}
+docker run -i -t ubuntu:18.04 /bin/bash
+\end{lstlisting}
+
+\begin{itemize}
+\item \lstinline!run! command
+\item \lstinline!-i! option interactive
+\item \lstinline!-t! attached to your terminal
+\item \lstinline!ubuntu! image
+\item \lstinline!18.04! image version (label)
+\item \lstinline!/bin/bash! program to run inside the container
+\end{itemize}
+
+When the program completes the execution, the container is stopped (but not deleted)
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{remove container}
+\begin{lstlisting}
+docker run --rm hello-world
+\end{lstlisting}
+
+\lstinline!--rm! deletes the container (not the image)
+\end{frame} 
+ 
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{naming a container}
+\begin{lstlisting}
+docker run -it --name vm ubuntu:18.04 /bin/bash
+\end{lstlisting}
+
+\begin{itemize}
+\item \lstinline!-it! is like \lstinline!-i -t!
+\item \lstinline!--name! name of the \textit{container}
+\end{itemize}
+Sometimes a random name is not a good idea
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{host pid}
+\begin{lstlisting}
+docker run -it --rm --pid=host  ubuntu:18.04 top
+\end{lstlisting}
+
+\lstinline!--pid=host! the container and the host computer share the same process IDs (just like a native process)
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{limiting resources}
+\begin{lstlisting}
+docker run -dt --name vm -m 1g ubuntu:18.04 /bin/bash
+\end{lstlisting}
+\begin{itemize}
+\item \lstinline!-m! max amount of memory available
+\item \lstinline!--memory-swap! max amount of swap memory. If not specified is equal to the max memmory (in this case 1GB)
+\item \lstinline!--cpus! number of cpus available. Can be a fraction
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{command arguments}
+\begin{lstlisting}
+docker run -t  -m 1g ubuntu:18.04 ls -lph /var
+\end{lstlisting}
+Just place them after the command.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{environment}
+\begin{lstlisting}
+docker run -it -e "DEBUG=true" ubuntu:18.04 ls -lph /
+\end{lstlisting}
+
+Set the value of an environment variable.
+
+A separate \lstinline!-e! for each variable.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{EXEC}
+\begin{lstlisting}
+docker exec vm df -h
+\end{lstlisting}
+
+Runs a command (in this case \lstinline!df -h!) in a running container
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{IMAGES}
+\begin{lstlisting}
+docker images
+\end{lstlisting}
+
+List the images 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{IMAGE}
+\framesubtitle{inspect}
+\begin{lstlisting}
+docker image inspect hello-world
+\end{lstlisting}
+
+Gives several information on the image
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Remove Image}
+\begin{lstlisting}
+docker rmi hello-world
+\end{lstlisting}
+
+Deletes a local image. It has no effect on the hub.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Processes}
+\begin{lstlisting}
+docker ps
+\end{lstlisting}
+
+List the running containers 
+
+\begin{lstlisting}
+docker ps -a
+\end{lstlisting}
+
+List all containers 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Remove container}
+\begin{lstlisting}
+docker rm vm
+\end{lstlisting}
+
+Deletes a container and all its data (volumes) 
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{System prining}
+\begin{lstlisting}
+docker system prune
+\end{lstlisting}
+
+Reclaim all disk space
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Disk space}
+\begin{lstlisting}
+docker system df
+\end{lstlisting}
+
+Shows what is using disk space
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{PULL}
+\begin{lstlisting}
+docker pull ubuntu:14.08
+\end{lstlisting}
+
+Download from the public repository a desired image
+\end{frame}

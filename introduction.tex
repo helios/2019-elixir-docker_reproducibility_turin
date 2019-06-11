@@ -215,3 +215,60 @@ In [1] a comparison among physical server, KVM, and Docker is reported.
    \end{column}%
    \end{columns}
   } 
+  
+  
+\begin{frame}
+\frametitle{Goals}
+\begin{itemize}
+\item  using docker to deploy an application
+\item  also in HPC setting
+\item  different use cases:
+  \begin{itemize}
+    \item  single application, temporary container
+    \item  complex application, temporary container
+    \item  lightweight Virtual Machine, always-on container
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Container - Reproducibility}
+\begin{itemize}
+\item  Reuse existing images with a precise version of OS and software
+\begin{itemize}
+   \item   Docker facilitates this integrating the concept of \qq{reuse if possible} in its core
+\end{itemize}
+\item  Use a \textit{Dockerfile} file to describe all the steps of creating and configuring a container.
+\item  Stateless: data are connected but are not part of the application
+\begin{itemize}
+  \item   Docker has Volumes to \qq{contenerize data}
+  \item   also bound directories
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Architecture}
+\begin{center}
+  \includegraphics[width=\columnwidth]{./Figure/docker-048-041}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Image --- Container}
+
+\begin{itemize}
+\item \textit{Image} is static, immutable
+\item \textit{Container} is dynamic, mutable
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Image --- Container}
+
+\begin{center}
+1 container = 1 image\\
+\vspace{0.5cm}
+1 image = several containers
+\end{center}
+\end{frame}
