@@ -75,11 +75,8 @@ You can create a Swarm environment using \href{https://www.virtualbox.org/wiki/D
 \begin{frame}[fragile]
 \frametitle{Swarm}
 \framesubtitle{Setup: VirtualBox}
-\begin{lstlisting}
-VBoxManage natnetwork add 
-  --netname swarm 
-  --network "192.168.15.0/24" 
-  --enable --dhcp on
+\begin{lstlisting}[breaklines=true]
+VBoxManage natnetwork add --netname swarm --network "192.168.15.0/24" --enable --dhcp on
 \end{lstlisting}
 \tiny
 \href{https://www.virtualbox.org/manual/ch06.html#network_nat_service}{VirtualBox NAT service}
@@ -172,4 +169,33 @@ reboot
 In every VM print the IP addess assigned by the DHCP. \\
 \lstinline!ifconfig! \\
 We need them to initialize Docker Swarm
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Swarm}
+\framesubtitle{Initialization}
+In the Swarm Manager VM
+\begin{lstlisting}
+docker swarm init --advertise-addr <MANAGER-IP>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Swarm}
+\framesubtitle{Initialization}
+In the Swarm Manager VM
+\begin{lstlisting}
+docker swarm init --advertise-addr 192.168.15.11
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Swarm}
+\framesubtitle{Initialization}
+In the Swarm Manager VM
+\begin{lstlisting}[breaklines=true]
+docker swarm join --token SQMTKN-1-6b7znegzyotcrebhyckphi27d6c2l5n18lla2q03htoayhqfhz-eit9g8klnc4nxrv2i28vkeofd 192.168.15.11:2377
+\end{lstlisting}
 \end{frame}
