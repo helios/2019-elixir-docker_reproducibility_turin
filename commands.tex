@@ -190,6 +190,27 @@ List all containers
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{Detach from a running container}
+
+\begin{lstlisting}
+docker run --rm -it --name Duck ubuntu:18.04 /bin/bash
+\end{lstlisting}
+Detach from the container using \lstinline!Ctrl-P! + \lstinline!Ctrl-Q!
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{RUN}
+\framesubtitle{ReAttach to a running container}
+
+\begin{lstlisting}
+docker attach Duck
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
 \frametitle{Remove container}
 \begin{lstlisting}
 docker rm vm
