@@ -153,7 +153,7 @@ ENV <key> <value>
 ENV <key>=<value> ...
 \end{lstlisting}
 
-\begin{lstlisting}
+\begin{lstlisting}[breaklines=true]
 ENV software="samtools" description=A\ great\ piece\ of\ software
     author=someone
 \end{lstlisting}	
@@ -300,7 +300,7 @@ A \lstinline!RUN! command can span multiple lines
 \begin{lstlisting}
 RUN apt-get install -y wget \
                        git \
-					   python3.6
+				  python3.6
 \end{lstlisting}
 \end{frame}
 
@@ -339,7 +339,7 @@ Combining commands and spanning the commands on multiple lines helps in readabil
 RUN apt-get update &&\
     apt-get install -y wget \
 	                   git \
-					   python3.6
+	                   python3.6
 \end{lstlisting}
 \end{frame}
 
@@ -399,7 +399,7 @@ Volumes are:
 
 Example of creating a \lstinline!VOLUME!
 
-\begin{lstlisting}
+\begin{lstlisting}[breaklines=true]
 FROM ubuntu:18.04
 RUN mkdir /opt/elixir-volume
 RUN echo "This is a file with a foo text" > /opt/elixir-volume/README.txt
@@ -455,7 +455,7 @@ LABEL version="1.2"
 RUN apt-get update &&\
     apt-get install -y wget \
 	                   git \
-					   python3.6
+	                   python3.6
 \end{lstlisting}
 \end{frame}
 

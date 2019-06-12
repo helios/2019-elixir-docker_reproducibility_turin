@@ -116,15 +116,20 @@ This is useful for ephemeral storage
 \frametitle{Data in Docker}
 \framesubtitle{When use What}
 
-\begin{lstlisting}
-
-| Volume | Bind mount |
-|--------|------------|
-| Sharing data among containers | Sharing configuration to containers|
-| The host lacks a directory structure | Sharing source code and build products |
-| Data can not be stored locally (cloud) | Stable direcotry and file structures shared w/ containers|
-
-\end{lstlisting}
+\begin{itemize}
+\item \textit{Volume}
+  \begin{itemize}
+  \item Sharing data among containers
+  \item The host lacks a directory structure
+  \item Data can not be stored locally (cloud)
+  \end{itemize}
+\item \textit{Bind mount}
+  \begin{itemize}
+  \item Sharing configuration to containers
+  \item Sharing source code and build products
+  \item Stable directory and file structures shared w/ containers
+  \end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -172,8 +177,7 @@ local     edr19-storage
 \begin{frame}[fragile]
 \frametitle{Data in Docker}
 \framesubtitle{Inspecting a volume}
-
-\begin{lstlisting}
+\begin{lstlisting}[breaklines=true]
 $ docker volume inspect edr19-storage
 
 [{
