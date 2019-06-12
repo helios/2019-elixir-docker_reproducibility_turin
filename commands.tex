@@ -179,13 +179,10 @@ Deletes a local image. It has no effect on the hub.
 \begin{lstlisting}
 docker ps
 \end{lstlisting}
-
 List the running containers 
-
 \begin{lstlisting}
 docker ps -a
 \end{lstlisting}
-
 List all containers 
 \end{frame}
 
@@ -202,23 +199,18 @@ Detach from the container using \lstinline!Ctrl-P! + \lstinline!Ctrl-Q!
 \begin{frame}[fragile]
 \frametitle{RUN}
 \framesubtitle{ReAttach to a running container}
-
 \begin{lstlisting}
 docker attach Duck
 \end{lstlisting}
-
 \end{frame}
-
 
 \begin{frame}[fragile]
 \frametitle{Remove container}
 \begin{lstlisting}
 docker rm vm
 \end{lstlisting}
-
 Deletes a container and all its data (volumes) 
 \end{frame}
-
 
 \begin{frame}[fragile]
 \frametitle{System prining}
@@ -229,16 +221,13 @@ docker system prune
 Reclaim all disk space
 \end{frame}
 
-
 \begin{frame}[fragile]
 \frametitle{Disk space}
 \begin{lstlisting}
 docker system df
 \end{lstlisting}
-
 Shows what is using disk space
 \end{frame}
-
 
 \begin{frame}[fragile]
 \frametitle{PULL}
@@ -247,4 +236,56 @@ docker pull ubuntu:14.08
 \end{lstlisting}
 
 Download from the public repository a desired image
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{COMMIT}
+Transforming a container into an image.
+\begin{itemize}
+\item run a container w/o \lstinline!--rm!
+\item install some software
+\item exit from the container
+\item remember the container id
+\item commit the change.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{COMMIT}
+\framesubtitle{Transform a container into an image.}
+\scriptsize
+\begin{lstlisting}[breaklines=true]
+$ docker commit --help
+Usage:  docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+
+Create a new image from a container s changes
+
+Options:
+  -a, --author string      Author (e.g., John Hannibal Smith <hannibal@a-team.com>)
+  -c, --change list         Apply Dockerfile instruction to the created image
+  -m, --message string Commit message
+  -p, --pause                Pause container during commit (default true)
+\end{lstlisting}
+\normalsize
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{COMMIT}
+\framesubtitle{Transform a container into an image.}
+\scriptsize
+\begin{lstlisting}[breaklines=true]
+$ docker run -it ubuntu:18.04 sh -c apt update && apt install git
+
+$ docker ps -a
+CONTAINER ID  IMAGE           COMMAND                  NAMES
+8bb0b797af88   ubuntu:18.04 sh -c ''apt update''       condescending_shaw
+
+$ docker commit -m install git 8bb0b797af88 ubuntu_git:0.1
+sha256:c47472e998a05687938fc9a5ebfa6cfbfff137aeb360b37de00e99515ab0298a
+
+$ docker images | head
+REPOSITORY  TAG IMAGE ID         SIZE
+ubuntu_git      0.1  c47472e998a0 212MB
+\end{lstlisting}
+\normalsize
 \end{frame}
