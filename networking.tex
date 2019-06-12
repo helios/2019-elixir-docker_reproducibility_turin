@@ -90,19 +90,53 @@ Usually an IP corresponds to a single network card.
 WiFi is a radio network card so has an IP.
 \end{frame}
 
-
-
-
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Networking}
-\begin{itemize}
-\item Networking is about communication
-\item Text is the simplest way to communicate
-\item Protocols are standards for reading and writing text
-\item Ports are channels from which communications pass-thought
-\end{itemize}
-\tiny
-\href{https://betterexplained.com/articles/a-simple-introduction-to-computer-networking/}{Ref.}
+How to display the network interfaces and IPs
+\scriptsize
+\begin{lstlisting}
+$ ifconfig
+
+eth4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.56.1  netmask 255.255.255.0  broadcast 192.168.56.255
+        inet6 fe80::5515:db56:8468:8336  prefixlen 64  scopeid 0xfd<compat,link,site,host>
+        ether 0a:00:27:00:00:3e  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 1500
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0xfe<compat,link,site,host>
+        loop  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+\end{lstlisting}
 \normalsize
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Networking}
+One computer can serve multiple purposes or \textit{services}.
+To each service is assigned a specific port number.
+
+\scriptsize
+\begin{lstlisting}
+HTTP = 80
+HTTPS = 443
+SSH = 22
+FTP = 21
+\end{lstlisting}
+\normalsize
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Networking}
+Connect to a remote computer with a secure connection
+\begin{lstlisting}
+ssh your_user_name@127.0.0.1:22
+\end{lstlisting}
+\end{frame}
