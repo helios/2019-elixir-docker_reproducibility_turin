@@ -14,20 +14,19 @@ $ docker run -d -t ubuntu:18.04
 \frametitle{Simple commands}
 
 finds the container ID
-
 \begin{lstlisting}
 $ docker ps
 \end{lstlisting}
-
+lists the containers; the new container is on top of the list; grab the \textit{NAME}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Simple commands}
 
-runs a command in the container
 \begin{lstlisting}
 $ docker exec suspicious_davinci "ls" "-lpF"
 \end{lstlisting}
+runs a command in the container, assuming the name is \textit{suspicious\_davinci}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -66,7 +65,6 @@ $ docker run -d -t ubuntu:18.04
 \end{lstlisting}
 
 \begin{itemize}
-\item \lstinline!run! command
 \item \lstinline!-d! option detached
 \item \lstinline!-t! create a terminal
 \item \lstinline!ubuntu! image
@@ -82,7 +80,6 @@ $ docker run -i -t ubuntu:18.04 /bin/bash
 \end{lstlisting}
 
 \begin{itemize}
-\item \lstinline!run! command
 \item \lstinline!-i! option interactive
 \item \lstinline!-t! attached to your terminal
 \item \lstinline!ubuntu! image
@@ -110,9 +107,10 @@ $ docker run -it --name vm ubuntu:18.04 /bin/bash
 
 \begin{itemize}
 \item \lstinline!-it! is like \lstinline!-i -t!
-\item \lstinline!--name! name of the \textit{container}
+\item \lstinline!--name! use \textit{vm} for naming the new \textit{container}
 \end{itemize}
-Sometimes a random name is not a good idea
+Sometimes a random name is not a good idea\\
+Names must be unique.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -122,6 +120,14 @@ Sometimes a random name is not a good idea
 $ docker run -it --rm --pid=host  ubuntu:18.04 top
 \end{lstlisting}
 \lstinline!--pid=host! the container and the host computer share the same process IDs (just like a native process)
+\begin{columns}
+\begin{column}{.50\textwidth}
+\includegraphics[width=\columnwidth]{./Figure/commands/pid-normal}
+\end{column}
+\begin{column}{.50\textwidth}
+\includegraphics[width=\columnwidth]{./Figure/commands/pid-host}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
