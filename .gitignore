@@ -1,0 +1,14 @@
+*.pdf
+*.aux
+*.log
+*.nav
+*.out
+*.gz
+Figure/prova.png
+Figure/LogoINGM_original.jpg
+*.toc
+*.fls*
+*.vrb
+*.snm
+*.fdb_latexmk
+reveal.js
